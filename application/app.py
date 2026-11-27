@@ -7,7 +7,9 @@ from flask import Flask, request, redirect, url_for, render_template
 app = Flask(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATABASE = os.path.join(BASE_DIR, "students.db")
+DATA_DIR = os.environ.get("DATA_DIR", BASE_DIR)
+os.makedirs(DATA_DIR, exist_ok=True)
+DATABASE = os.path.join(DATA_DIR, "students.db")
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
